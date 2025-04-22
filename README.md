@@ -156,66 +156,66 @@
 Логическая структура — это реализация концептуальной модели в терминах реляционной модели. Ниже — таблицы с первичными и внешними ключами:
 
 #### Таблица: Слушатель
-    CREATE TABLE Слушатель (
-        ID_слушателя INT PRIMARY KEY,
-        ФИО VARCHAR(100),
-        Телефон VARCHAR(20),
-        Email VARCHAR(100),
-        Дата_регистрации DATE
+    CREATE TABLE listener (
+        id_listener SERIAL PRIMARY KEY,
+        full_name VARCHAR(100),
+        phone VARCHAR(20),
+        email VARCHAR(100),
+        registration_date DATE
     );
 #### Таблица: Преподаватель
-    CREATE TABLE Преподаватель (
-        ID_преподавателя INT PRIMARY KEY,
-        ФИО VARCHAR(100),
-        Телефон VARCHAR(20),
-        Email VARCHAR(100),
-        Специализация VARCHAR(100)
+    CREATE TABLE teacher (
+        id_teacher SERIAL PRIMARY KEY,
+        full_name VARCHAR(100),
+        phone VARCHAR(20),
+        email VARCHAR(100),
+        specialization VARCHAR(100)
     );
 #### Таблица: Курс
-    CREATE TABLE Курс (
-        ID_курса INT PRIMARY KEY,
-        Название VARCHAR(100),
-        Описание TEXT,
-        Длительность INT,
-        Стоимость DECIMAL(10, 2)
+    CREATE TABLE course (
+        id_course SERIAL PRIMARY KEY,
+        name VARCHAR(100),
+        description TEXT,
+        duration INT,
+        price DECIMAL(10, 2)
     );
 #### Таблица: Группа
-    CREATE TABLE Группа (
-        ID_группы INT PRIMARY KEY,
-        Название VARCHAR(50),
-        ID_курса INT,
-        ID_преподавателя INT,
-        Максимум INT,
-        FOREIGN KEY (ID_курса) REFERENCES Курс(ID_курса),
-        FOREIGN KEY (ID_преподавателя) REFERENCES Преподаватель(ID_преподавателя)
+    CREATE TABLE group_table (
+        id_group SERIAL PRIMARY KEY,
+        group_name VARCHAR(50),
+        id_course INT,
+        id_teacher INT,
+        max_students INT,
+        FOREIGN KEY (id_course) REFERENCES course(id_course),
+        FOREIGN KEY (id_teacher) REFERENCES teacher(id_teacher)
     );
 #### Таблица: Занятие
-    CREATE TABLE Занятие (
-        ID_занятия INT PRIMARY KEY,
-        ID_группы INT,
-        Дата DATE,
-        Время_начала TIME,
-        Время_окончания TIME,
-        Аудитория VARCHAR(50),
-        FOREIGN KEY (ID_группы) REFERENCES Группа(ID_группы)
+    CREATE TABLE lesson (
+        id_lesson SERIAL PRIMARY KEY,
+        id_group INT,
+        lesson_date DATE,
+        start_time TIME,
+        end_time TIME,
+        classroom VARCHAR(50),
+        FOREIGN KEY (id_group) REFERENCES group_table(id_group)
     );
 #### Таблица: Регистрация
-    CREATE TABLE Регистрация (
-        ID_регистрации INT PRIMARY KEY,
-        ID_слушателя INT,
-        ID_группы INT,
-        Дата_регистрации DATE,
-        FOREIGN KEY (ID_слушателя) REFERENCES Слушатель(ID_слушателя),
-        FOREIGN KEY (ID_группы) REFERENCES Группа(ID_группы)
+    CREATE TABLE registration (
+        id_registration SERIAL PRIMARY KEY,
+        id_listener INT,
+        id_group INT,
+        registration_date DATE,
+        FOREIGN KEY (id_listener) REFERENCES listener(id_listener),
+        FOREIGN KEY (id_group) REFERENCES group_table(id_group)
     );
 #### Таблица: Оплата
-    CREATE TABLE Оплата (
-        ID_платежа INT PRIMARY KEY,
-        ID_слушателя INT,
-        Дата_оплаты DATE,
-        Сумма DECIMAL(10,2),
-        Способ_оплаты VARCHAR(50),
-        FOREIGN KEY (ID_слушателя) REFERENCES Слушатель(ID_слушателя)
+    CREATE TABLE payment (
+        id_payment SERIAL PRIMARY KEY,
+        id_listener INT,
+        payment_date DATE,
+        amount DECIMAL(10,2),
+        payment_method VARCHAR(50),
+        FOREIGN KEY (id_listener) REFERENCES listener(id_listener)
     );
 
 # 4. Физическая структура базы данных
@@ -235,116 +235,118 @@
 
 # 5. Реализация проекта в среде конкретной СУБД
 ### 5.1. Создание таблиц
-    CREATE TABLE Слушатель (
-        ID_слушателя INT PRIMARY KEY,
-        ФИО VARCHAR(100),
-        Телефон VARCHAR(20),
-        Email VARCHAR(100),
-        Дата_регистрации DATE
+    CREATE TABLE listener (
+        id_listener SERIAL PRIMARY KEY,
+        full_name VARCHAR(100),
+        phone VARCHAR(20),
+        email VARCHAR(100),
+        registration_date DATE
+    );
+    
+    CREATE TABLE teacher (
+        id_teacher SERIAL PRIMARY KEY,
+        full_name VARCHAR(100),
+        phone VARCHAR(20),
+        email VARCHAR(100),
+        specialization VARCHAR(100)
+    );
+    
+    CREATE TABLE course (
+        id_course SERIAL PRIMARY KEY,
+        name VARCHAR(100),
+        description TEXT,
+        duration INT,
+        price DECIMAL(10, 2)
+    );
+    
+    CREATE TABLE group_table (
+        id_group SERIAL PRIMARY KEY,
+        group_name VARCHAR(50),
+        id_course INT,
+        id_teacher INT,
+        max_students INT,
+        FOREIGN KEY (id_course) REFERENCES course(id_course),
+        FOREIGN KEY (id_teacher) REFERENCES teacher(id_teacher)
+    );
+    
+    CREATE TABLE lesson (
+        id_lesson SERIAL PRIMARY KEY,
+        id_group INT,
+        lesson_date DATE,
+        start_time TIME,
+        end_time TIME,
+        classroom VARCHAR(50),
+        FOREIGN KEY (id_group) REFERENCES group_table(id_group)
+    );
+    
+    CREATE TABLE registration (
+        id_registration SERIAL PRIMARY KEY,
+        id_listener INT,
+        id_group INT,
+        registration_date DATE,
+        FOREIGN KEY (id_listener) REFERENCES listener(id_listener),
+        FOREIGN KEY (id_group) REFERENCES group_table(id_group)
+    );
+    
+    CREATE TABLE payment (
+        id_payment SERIAL PRIMARY KEY,
+        id_listener INT,
+        payment_date DATE,
+        amount DECIMAL(10,2),
+        payment_method VARCHAR(50),
+        FOREIGN KEY (id_listener) REFERENCES listener(id_listener)
     );
 
-    CREATE TABLE Преподаватель (
-        ID_преподавателя INT PRIMARY KEY,
-        ФИО VARCHAR(100),
-        Телефон VARCHAR(20),
-        Email VARCHAR(100),
-        Специализация VARCHAR(100)
-    );
-
-    CREATE TABLE Курс (
-        ID_курса INT PRIMARY KEY,
-        Название VARCHAR(100),
-        Описание TEXT,
-        Длительность INT,
-        Стоимость DECIMAL(10, 2)
-    );
-
-     CREATE TABLE Группа (
-        ID_группы INT PRIMARY KEY,
-        Название VARCHAR(50),
-        ID_курса INT,
-        ID_преподавателя INT,
-        Максимум INT,
-        FOREIGN KEY (ID_курса) REFERENCES Курс(ID_курса),
-        FOREIGN KEY (ID_преподавателя) REFERENCES Преподаватель(ID_преподавателя)
-    );
-
-    CREATE TABLE Занятие (
-        ID_занятия INT PRIMARY KEY,
-        ID_группы INT,
-        Дата DATE,
-        Время_начала TIME,
-        Время_окончания TIME,
-        Аудитория VARCHAR(50),
-        FOREIGN KEY (ID_группы) REFERENCES Группа(ID_группы)
-    );
-
-    CREATE TABLE Регистрация (
-        ID_регистрации INT PRIMARY KEY,
-        ID_слушателя INT,
-        ID_группы INT,
-        Дата_регистрации DATE,
-        FOREIGN KEY (ID_слушателя) REFERENCES Слушатель(ID_слушателя),
-        FOREIGN KEY (ID_группы) REFERENCES Группа(ID_группы)
-    );
-
-    CREATE TABLE Оплата (
-        ID_платежа INT PRIMARY KEY,
-        ID_слушателя INT,
-        Дата_оплаты DATE,
-        Сумма DECIMAL(10,2),
-        Способ_оплаты VARCHAR(50),
-        FOREIGN KEY (ID_слушателя) REFERENCES Слушатель(ID_слушателя)
-    );
 ### Вставки в таблицу
-    INSERT INTO Слушатель (ФИО, Телефон, Email) VALUES
-    ('Иванов Иван Иванович', '89101234567', 'ivanov@mail.ru'),
-    ('Петрова Анна Сергеевна', '89107654321', 'petrova@mail.ru'),
-    ('Сидоров Алексей Петрович', '89103456789', 'sidorov@mail.ru'),
-    ('Кузнецова Мария Игоревна', '89105678901', 'kuznetsova@mail.ru'),
-    ('Орлов Николай Андреевич', '89107890123', 'orlov@mail.ru');
-
-    INSERT INTO Преподаватель (ФИО, Телефон, Email, Специализация) VALUES
-    ('Смирнов Андрей Павлович', '89201231231', 'smirnov@mail.ru', 'Программирование'),
-    ('Егорова Татьяна Николаевна', '89204564564', 'egorova@mail.ru', 'Дизайн'),
-    ('Новиков Олег Викторович', '89207897897', 'novikov@mail.ru', 'Маркетинг'),
-    ('Васильева Инна Сергеевна', '89206786786', 'vasilieva@mail.ru', 'Бухгалтерия'),
-    ('Макаров Илья Денисович', '89205675675', 'makarov@mail.ru', 'Аналитика данных');
-
-    INSERT INTO Курс (Название, Описание, Длительность, Стоимость) VALUES
-    ('Python для начинающих', 'Основы Python, синтаксис, типы данных', 40, 15000.00),
-    ('Основы веб-дизайна', 'Работа с Figma, принципы UI/UX', 36, 18000.00),
-    ('Интернет-маркетинг', 'SEO, SMM, контекстная реклама', 30, 20000.00),
-    ('1С:Бухгалтерия', 'Ведение учёта в 1С', 50, 22000.00),
-    ('Power BI и визуализация данных', 'BI-инструменты, отчёты, дашборды', 45, 25000.00);
-
-    INSERT INTO Группа (Название, ID_курса, ID_преподавателя, Максимум) VALUES
+    INSERT INTO listener (full_name, phone, email) VALUES
+    ('Ivanov Ivan Ivanovich', '89101234567', 'ivanov@mail.ru'),
+    ('Petrova Anna Sergeevna', '89107654321', 'petrova@mail.ru'),
+    ('Sidorov Aleksei Petrovich', '89103456789', 'sidorov@mail.ru'),
+    ('Kuznetsova Maria Igorevna', '89105678901', 'kuznetsova@mail.ru'),
+    ('Orlov Nikolai Andreevich', '89107890123', 'orlov@mail.ru');
+    
+    INSERT INTO teacher (full_name, phone, email, specialization) VALUES
+    ('Smirnov Andrei Pavlovich', '89201231231', 'smirnov@mail.ru', 'Programming'),
+    ('Egorova Tatiana Nikolaevna', '89204564564', 'egorova@mail.ru', 'Design'),
+    ('Novikov Oleg Viktorovich', '89207897897', 'novikov@mail.ru', 'Marketing'),
+    ('Vasilieva Inna Sergeevna', '89206786786', 'vasilieva@mail.ru', 'Accounting'),
+    ('Makarov Ilya Denisovich', '89205675675', 'makarov@mail.ru', 'Data Analytics');
+    
+    INSERT INTO course (name, description, duration, price) VALUES
+    ('Python for Beginners', 'Python basics, syntax, data types', 40, 15000.00),
+    ('Basics of Web Design', 'Working with Figma, UI/UX principles', 36, 18000.00),
+    ('Internet Marketing', 'SEO, SMM, contextual advertising', 30, 20000.00),
+    ('1C:Accounting', 'Accounting in 1C', 50, 22000.00),
+    ('Power BI and Data Visualization', 'BI tools, reports, dashboards', 45, 25000.00);
+    
+    INSERT INTO group_table (group_name, id_course, id_teacher, max_students) VALUES
     ('Python-1', 1, 1, 10),
     ('WebDesign-A', 2, 2, 12),
     ('Marketing-B', 3, 3, 8),
     ('Buh-Group', 4, 4, 10),
     ('PowerBI-5', 5, 5, 15);
-
-    INSERT INTO Занятие (ID_группы, Дата, Время_начала, Время_окончания, Аудитория) VALUES
+    
+    INSERT INTO lesson (id_group, lesson_date, start_time, end_time, classroom) VALUES
     (1, '2025-04-20', '10:00', '12:00', '101'),
     (2, '2025-04-21', '14:00', '16:00', '202'),
     (3, '2025-04-22', '16:00', '18:00', '303'),
     (4, '2025-04-23', '09:00', '11:00', '404'),
     (5, '2025-04-24', '11:00', '13:00', '505');
-
-    INSERT INTO Регистрация (ID_слушателя, ID_группы) VALUES
+    
+    INSERT INTO registration (id_listener, id_group) VALUES
     (1, 1),
     (2, 2),
     (3, 3),
     (4, 4),
     (5, 5);
+    
+    INSERT INTO payment (id_listener, payment_date, amount, payment_method) VALUES
+    (1, '2025-04-01', 15000.00, 'Card'),
+    (2, '2025-04-02', 18000.00, 'Cash'),
+    (3, '2025-04-03', 20000.00, 'Sberbank Online'),
+    (4, '2025-04-04', 22000.00, 'Card'),
+    (5, '2025-04-05', 25000.00, 'Cash');
 
-    INSERT INTO Оплата (ID_слушателя, Дата_оплаты, Сумма, Способ_оплаты) VALUES
-    (1, '2025-04-01', 15000.00, 'Карта'),
-    (2, '2025-04-02', 18000.00, 'Наличные'),
-    (3, '2025-04-03', 20000.00, 'Сбербанк Онлайн'),
-    (4, '2025-04-04', 22000.00, 'Карта'),
-    (5, '2025-04-05', 25000.00, 'Наличные');
 
 ### 5.2. Создание запросов
 Примеры типовых SQL-запросов:
