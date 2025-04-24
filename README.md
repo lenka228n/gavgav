@@ -368,3 +368,13 @@
     ORDER BY Занятие.Дата, Занятие.Время_начала;
     
 ### 5.3. Разработка интерфейса
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-19-45.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-19-48.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-19-50.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-19-55.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-19-57.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-20-02.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-20-06.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-20-08.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-20-11.png)
+![image](https://github.com/lenka228n/gavgav/blob/main/foto/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-04-24%2012-20-14.png)
